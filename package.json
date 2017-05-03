@@ -1,0 +1,42 @@
+{
+  "name": "pad",
+  "version": "0.0.1",
+  "description": "Write & manage legal documents in JSON",
+  "main": "index.js",
+  "bin": {
+    "pad": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karimsa/pad.git"
+  },
+  "keywords": [
+    "legal",
+    "pad",
+    "json",
+    "markdown",
+    "ejs",
+    "template",
+    "contracts"
+  ],
+  "author": "Karim Alibhai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/karimsa/pad/issues"
+  },
+  "homepage": "https://github.com/karimsa/pad#readme",
+  "dependencies": {
+    "ejs": "^2.5.6",
+    "flatten": "^1.0.2",
+    "jstransformer-handlebars": "^1.0.0",
+    "kopy": "^6.1.0",
+    "marked": "^0.3.6",
+    "minimist": "^1.2.0",
+    "mustache": "^2.3.0",
+    "nightmare": "^2.10.0",
+    "tmp": "0.0.31"
+  }
+}

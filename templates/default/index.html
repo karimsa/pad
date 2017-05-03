@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{{ title }}</title>
+
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body ng-controller="TemplateCtl">
+  {{{ body }}}
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script>
+    ~ function () {
+      'use strict'
+
+      function bootstrap() {
+        const app = angular.module('TemplateApp', [])
+    
+        app.controller('TemplateCtl', $scope => {
+          {{{ vars }}}
+
+          const varList = {{{ varList }}}
+
+          window.getScope = () => {
+            let obj = {}
+            varList.forEach(k => obj[k] = $scope[k])
+            return obj
+          }
+        })
+
+        angular.element(() => angular.bootstrap(document, ['TemplateApp']))
+      }
+
+      function fixNumbers( list, levels ) {
+        let hn = 1
+
+        ;[].forEach.call(list.children, elm => {
+          if (/H[2-6]/.test(elm.tagName)) {
+            elm.innerText = `${ levels.concat([ hn ++ ]).join('.') }. ${elm.innerText}`
+          }
+
+          else if (elm.tagName === 'UL') {
+            fixNumbers( elm, levels.concat([ hn - 1 ]) )
+          }
+
+          else if (elm.tagName === 'LI') {
+            elm.innerHTML = `${ levels.concat([ hn ++ ]).join('.') }. ${elm.innerHTML}`
+          }
+
+          else console.warn(elm)
+        })
+      }
+
+      // init
+      fixNumbers( document.querySelector('body > ul'), [] )
+      bootstrap()
+    }()
+  </script>
+</body>
+</html>

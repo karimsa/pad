@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+    }
+
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+
+      overflow: none;
+    }
+
+    iframe {
+      height: 100%;
+      width: 100%;
+
+      border: none;
+      z-index: -1;
+    }
+
+    button {
+      position: absolute;
+      z-index: 1000;
+
+      bottom: 1.5rem;
+      right: 1.5rem;
+
+      padding: 1rem;
+      cursor: pointer;
+
+      color: #fff;
+      font-size: 1.5rem;
+      background: #009688;
+
+      border: none;
+      border-radius: 50%;
+    }
+
+    button,
+    button:focus {
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <iframe src="index.html"></iframe>
+  <button onclick="document.body.appendChild(document.createElement('done'));void(0)">&#10004;</button>
+
+  <script>
+    window.getScope = () => {
+      let a = document.querySelector('iframe').contentWindow.getScope()
+      console.warn(a)
+      return a
+    }
+  </script>
+</body>
+</html>
