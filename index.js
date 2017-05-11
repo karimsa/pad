@@ -10,6 +10,7 @@
 const fs = require('fs')
     , path = require('path')
     , kopy = require('kopy')
+    , yaml = require('js-yaml')
     , mustache = require('mustache')
     , nightmare = require('nightmare')
     , parseSection = require('./lib/parse/section')
@@ -53,9 +54,15 @@ const tmp = require('tmp').dirSync().name
 let document
 
 try {
-  document = JSON.parse(fs.readFileSync(input, 'utf8'))
+  if (input.endsWith('.json')) {
+    document = JSON.parse(fs.readFileSync(input, 'utf8'))
+  } else if (input.endsWith('.yml')) {
+    document = yaml.safeLoad(fs.readFileSync(input, 'utf8'))
+  } else {
+    throw new Error('Unknown format: ' + input.substr(input.lastIndexOf('.') + 1).toUpperCase())
+  }
 } catch (err) {
-  die('The input file is not in valid JSON format.\n\n' + String(err.stack || err))
+  die('The input file is not in valid JSON or YAML format.\n\n' + String(err.stack || err))
 }
 
 // get parse tree
@@ -82,7 +89,8 @@ kopy(templateDir, tmp, {
     const scope = await nightmare({
       show: true,
       openDevTools: process.env.DEBUG === 'nightmare',
-      waitTimeout: 2147483647
+      waitTimeout: 2147483647,
+      fullscreen: true
     })
       .goto('file://' + tmp + '/controller.html')
       .wait('done')

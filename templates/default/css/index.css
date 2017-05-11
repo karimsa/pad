@@ -68,13 +68,26 @@ p {
   text-align: justify;
 }
 
-ul ul {
+ul {
+  list-style: none;
+}
+
+ul > ul {
   margin-left: 2rem;
 }
 
+h1 + ul,
+h2 + ul,
+h3 + ul,
+h4 + ul,
+h5 + ul,
+h6 + ul {
+  margin-left: 0;
+}
+
 ul > li {
-    padding-top: .5rem;
-    padding-bottom: .5rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
 }
 
 input[type="text"],
