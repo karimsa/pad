@@ -6,6 +6,7 @@
 
   <title>{{ title }}</title>
 
+  <link rel="stylesheet" href="css/tipped.css">
   <link rel="stylesheet" href="css/index.css">
 </head>
 <body ng-controller="TemplateCtl">
@@ -17,7 +18,10 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
   <script src="js/jquery.js"></script>
+  <script src="js/tipped.js"></script>
   <script>
+    jQuery(() => Tipped.create('input[type="text"]'))
+
     ~ function () {
       'use strict'
 
