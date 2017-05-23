@@ -16,13 +16,19 @@ html {
 }
 
 body {
-  padding: 1rem 2rem;
+  padding: 2rem;
   margin: 0 auto;
+}
+
+@media print {
+  body {
+    padding: 1rem 2rem;
+  }
 }
 
 @media not print {
   body {
-    width: 50%;
+    width: 8.5in;
   }
 }
 
@@ -68,6 +74,10 @@ p {
   text-align: justify;
 }
 
+body > ul {
+  padding-bottom: 2rem;
+}
+
 ul {
   list-style: none;
 }
@@ -97,4 +107,20 @@ input[type="text"],
   background: none;
   border: none;
   border-bottom: solid 2px;
+}
+
+.seal {
+  width: 40mm;
+  height: 40mm;
+  margin-bottom: 1rem;
+  border: solid 1px #000;
+  display: table;
+}
+
+.seal > div {
+  display: table-cell;
+  vertical-align: middle;
+
+  text-align: center;
+  font-size: .8rem;
 }
